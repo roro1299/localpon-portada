@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LocalPON · Ventas e inventario para tu negocio</title>
+<meta name="description" content="LocalPON: punto de venta e inventario para pequeños comercios. App para Android y portal web, gratis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ====== EDITA AQUÍ tus datos (también hay enlaces marcados con "EDITA" más abajo) ====== */
+:root{
+  --verde:#14302B; --verde2:#1E4640; --ambar:#E8A33D; --crema:#F6F4EE; --tinta:#1D2B28; --gris:#55635F; --linea:#DAD6CB;
+  --radio:20px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;color:var(--tinta);background:var(--crema);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1;letter-spacing:-.01em}
+h2{font-size:clamp(30px,4.5vw,46px);margin-bottom:14px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9A5F0B;margin-bottom:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;transition:transform .15s, box-shadow .15s;cursor:pointer;font:inherit;font-weight:700}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(20,48,43,.18)}
+.btn:focus-visible{outline:3px solid var(--ambar);outline-offset:3px}
+.btn-primario{background:var(--ambar);color:var(--verde)}
+.btn-claro{background:transparent;color:var(--crema);border-color:rgba(246,244,238,.55)}
+.btn-oscuro{background:var(--verde);color:var(--crema)}
+
+/* barra superior */
+header{position:sticky;top:0;z-index:20;background:rgba(246,244,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;text-decoration:none}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--verde);display:grid;place-items:center;color:var(--ambar);font-style:normal;font-size:18px}
+nav ul{display:flex;gap:26px;list-style:none;padding:0;align-items:center}
+nav a{text-decoration:none;font-weight:500;font-size:15px}
+nav a:hover{color:#9A5F0B}
+.menu-btn{display:none;background:none;border:0;font-size:28px;cursor:pointer;color:var(--tinta)}
+
+/* hero */
+.hero{background:var(--verde);color:var(--crema);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 500px at 85% 20%,rgba(232,163,61,.22),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(42,157,143,.25),transparent 60%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:84px 0 96px}
+.hero h1{font-size:clamp(40px,6.2vw,72px);margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--ambar)}
+.hero p.lead{font-size:20px;color:#BFD8D5;max-width:520px;margin-bottom:34px}
+.hero .acciones{display:flex;gap:14px;flex-wrap:wrap}
+.nota{margin-top:18px;font-size:14px;color:#8FB3AE}
+
+/* teléfono ilustrado */
+.telefono{justify-self:center;width:min(300px,78vw);aspect-ratio:9/18.5;background:#0d1f1c;border-radius:40px;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 2px #2b4a44 inset;transform:rotate(3deg)}
+.pantalla{height:100%;background:var(--crema);border-radius:30px;overflow:hidden;display:flex;flex-direction:column}
+.p-top{background:var(--verde);color:#fff;padding:22px 16px 14px;font-weight:700;font-size:15px;display:flex;justify-content:space-between}
+.p-top span{color:var(--ambar)}
+.p-body{padding:14px;display:grid;gap:10px;flex:1;align-content:start}
+.p-kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.p-kpi div{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:10px;font-size:11px;color:var(--gris)}
+.p-kpi b{display:block;font-size:20px;color:var(--verde);font-family:'Fraunces',serif}
+.p-item{color:var(--tinta);background:#fff;border:1px solid var(--linea);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;font-size:13px}
+.p-item b{color:var(--verde)}
+.p-btn{margin-top:auto;background:var(--ambar);color:var(--verde);border-radius:12px;text-align:center;padding:12px;font-weight:700;font-size:14px}
+
+/* secciones */
+section{padding:88px 0}
+.cabecera{max-width:640px;margin-bottom:44px}
+.cabecera p{color:var(--gris);font-size:18px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:30px}
+.tarjeta .ico{width:52px;height:52px;border-radius:14px;background:#E9F2EE;display:grid;place-items:center;font-size:26px;margin-bottom:18px}
+.tarjeta h3{font-size:22px;margin-bottom:8px}
+.tarjeta p{color:var(--gris);font-size:16px}
+
+/* fotos / bandas ilustradas */
+.fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.foto{border-radius:var(--radio);aspect-ratio:4/5;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px;color:#fff;background-size:cover;background-position:center}
+.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,25,22,.78))}
+.foto span{position:relative;z-index:1;font-weight:700;font-size:19px;font-family:'Fraunces',serif}
+.foto small{display:block;font-family:'DM Sans';font-weight:400;font-size:14px;opacity:.85}
+.f1{background-image:linear-gradient(135deg,#2A9D8F,#14302B)}
+.f2{background-image:linear-gradient(135deg,#E8A33D,#9A5F0B)}
+.f3{background-image:linear-gradient(135deg,#1E4640,#0d1f1c)}
+.foto svg{position:absolute;top:18px;right:18px;width:96px;height:96px;opacity:.9}
+/* >>> Para usar fotos reales: sube tus fotos a la carpeta "fotos" y cambia, por ejemplo:
+   .f1{background-image:url('fotos/tienda.jpg')}  <<< */
+
+/* pasos */
+.pasos{counter-reset:p;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.paso{counter-increment:p;position:relative;padding-top:56px}
+.paso::before{content:counter(p);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;background:var(--ambar);color:var(--verde);font-weight:700;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:20px}
+.paso h3{font-size:20px;margin-bottom:6px}
+.paso p{color:var(--gris)}
+
+/* descarga */
+.oscura{background:var(--verde);color:var(--crema)}
+.oscura .cabecera p{color:#BFD8D5}
+.oscura .eyebrow{color:var(--ambar)}
+.descarga{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.caja{background:var(--verde2);border-radius:var(--radio);padding:34px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.caja h3{font-size:26px}
+.caja p{color:#BFD8D5}
+.caja small{color:#8FB3AE}
+
+/* contacto */
+.contacto{display:grid;grid-template-columns:1fr 1.2fr;gap:44px;align-items:start}
+.datos{display:grid;gap:18px;margin-top:26px}
+.dato{display:flex;gap:14px;align-items:flex-start}
+.dato .ico{width:46px;height:46px;flex:none;border-radius:12px;background:#E9F2EE;display:grid;place-items:center;font-size:22px}
+.dato b{display:block}
+.dato span,.dato a{color:var(--gris);text-decoration:none}
+.dato a:hover{color:#9A5F0B;text-decoration:underline}
+form{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:30px;display:grid;gap:16px}
+label{font-size:14px;font-weight:700}
+input,textarea{width:100%;padding:13px 14px;border:1.5px solid var(--linea);border-radius:12px;font:inherit;background:var(--crema);margin-top:6px}
+input:focus,textarea:focus{outline:3px solid rgba(232,163,61,.5);border-color:var(--ambar)}
+textarea{min-height:120px;resize:vertical}
+.mapa{margin-top:44px;border-radius:var(--radio);overflow:hidden;border:1px solid var(--linea);height:380px;background:#E9F2EE}
+.mapa iframe{width:100%;height:100%;border:0}
+
+footer{background:#0d1f1c;color:#8FB3AE;padding:34px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{color:#BFD8D5}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;padding:56px 0 70px}
+  .telefono{transform:none;order:-1;width:230px}
+  .fotos{grid-template-columns:1fr}
+  .foto{aspect-ratio:16/10}
+  .contacto{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .menu-btn{display:block}
+  nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--crema);padding:20px;border-bottom:1px solid var(--linea);gap:18px;align-items:flex-start}
+  nav ul.abierto{display:flex}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#inicio"><i>◆</i> LocalPON</a>
+    <nav aria-label="Principal">
+      <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" onclick="const u=document.getElementById('menu');const a=u.classList.toggle('abierto');this.setAttribute('aria-expanded',a)">☰</button>
+      <ul id="menu">
+        <li><a href="#que-es">Qué es</a></li>
+        <li><a href="#como">Cómo funciona</a></li>
+        <li><a href="#descargar">Descargar</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <!-- EDITA: la dirección de tu portal (login) -->
+        <li><a class="btn btn-oscuro" style="padding:10px 20px" href="https://localpos-web.onrender.com/login.html">Iniciar sesión</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" style="color:var(--ambar)">Para tiendas, cafeterías y papelerías</p>
+        <h1>Tus ventas e inventario, <em>claros</em> desde el celular.</h1>
+        <p class="lead">LocalPON es un punto de venta gratuito. Cobra, controla tus productos y revisa reportes, con o sin internet.</p>
+        <div class="acciones">
+          <a class="btn btn-primario" href="https://localpos-web.onrender.com/login.html">Iniciar sesión</a>
+          <a class="btn btn-claro" href="#descargar">Descargar la app</a>
+        </div>
+        <p class="nota">Gratis · Android y navegador · Tus datos, protegidos</p>
+      </div>
+      <div class="telefono" aria-hidden="true">
+        <div class="pantalla">
+          <div class="p-top">LocalPON <span>● En línea</span></div>
+          <div class="p-body">
+            <div class="p-kpi"><div>Ventas hoy<b>$1,280</b></div><div>Productos<b>46</b></div></div>
+            <div class="p-item"><span>Refresco 600 ml</span><b>$20</b></div>
+            <div class="p-item"><span>Galletas</span><b>$18</b></div>
+            <div class="p-item"><span>Pan dulce</span><b>$12</b></div>
+            <div class="p-btn">Cobrar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="que-es">
+    <div class="wrap">
+      <div class="cabecera">
+        <p class="eyebrow">Qué es</p>
+        <h2>Todo lo que necesita un negocio pequeño</h2>
+        <p>Sin equipos caros ni mensualidades. Con tu celular y tu computadora ya tienes un punto de venta.</p>
+      </div>
+      <div class="rejilla">
+        <div class="tarjeta"><div class="ico">🛒</div><h3>Ventas rápidas</h3><p>Registra cada venta en segundos. El inventario se descuenta solo.</p></div>
+        <div class="tarjeta"><div class="ico">📦</div><h3>Inventario al día</h3><p>Da de alta, edita y elimina productos. Sabrás qué se está acabando.</p></div>
+        <div class="tarjeta"><div class="ico">📊</div><h3>Reportes</h3><p>Ingresos por día, productos más vendidos y descarga a Excel.</p></div>
+        <div class="tarjeta"><div class="ico">👥</div><h3>Equipo y permisos</h3><p>Crea cuentas para tus empleados. Cada quien ve solo sus ventas.</p></div>
+        <div class="tarjeta"><div class="ico">📶</div><h3>Funciona sin internet</h3><p>Vende aunque se vaya la red y se sincroniza al reconectar.</p></div>
+        <div class="tarjeta"><div class="ico">🔒</div><h3>Acceso seguro</h3><p>Contraseñas cifradas y bloqueo con huella o rostro en el celular.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="fotos">
+        <div class="foto f1">
+          <svg viewBox="0 0 96 96" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 36h72l-6 44H18z"/><path d="M28 36l8-20h24l8 20"/></svg>
+          <span>Tienditas y abarrotes<small>Controla lo que vendes cada día</small></span>
+        </div>
+        <div class="foto f2">
+          <svg viewBox="0 0 96 96" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 36h48v26a16 16 0 0 1-16 16H36a16 16 0 0 1-16-16z"/><path d="M68 44h6a10 10 0 0 1 0 20h-6"/><path d="M34 16v10M46 12v14M58 16v10"/></svg>
+          <span>Cafeterías y comida<small>Cobra rápido en horas pico</small></span>
+        </div>
+        <div class="foto f3">
+          <svg viewBox="0 0 96 96" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="22" y="12" width="52" height="72" rx="8"/><path d="M40 72h16"/><path d="M34 30h28M34 42h28M34 54h18"/></svg>
+          <span>Papelerías y servicios<small>Inventario siempre a la mano</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como" style="background:#fff;border-block:1px solid var(--linea)">
+    <div class="wrap">
+      <div class="cabecera"><p class="eyebrow">Cómo funciona</p><h2>Empieza en tres pasos</h2></div>
+      <div class="pasos">
+        <div class="paso"><h3>Entra al portal</h3><p>Inicia sesión con la cuenta que te dio el administrador de tu negocio.</p></div>
+        <div class="paso"><h3>Carga tus productos</h3><p>Registra tu inventario desde la página o desde la app.</p></div>
+        <div class="paso"><h3>Vende y revisa</h3><p>Cobra desde el celular y consulta los reportes en la computadora.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="descargar" class="oscura">
+    <div class="wrap">
+      <div class="cabecera"><p class="eyebrow">Descargar</p><h2>Llévala en tu celular</h2><p>Elige cómo quieres usar LocalPON.</p></div>
+      <div class="descarga">
+        <div class="caja">
+          <h3>App para Android</h3>
+          <p>Instala el APK, entra con tu cuenta y activa el bloqueo con huella.</p>
+          <!-- EDITA: cuando subas el APK a GitHub (Releases) este enlace lo descarga -->
+          <a class="btn btn-primario" href="https://github.com/roro1299/localpon-app/releases/latest" rel="noopener">Descargar APK</a>
+          <small>Al instalar, Android puede pedir permiso para "orígenes desconocidos".</small>
+        </div>
+        <div class="caja">
+          <h3>Portal web</h3>
+          <p>Administra usuarios, inventario y reportes desde la computadora.</p>
+          <a class="btn btn-claro" href="https://localpos-web.onrender.com/login.html">Entrar al portal</a>
+          <small>La primera carga puede tardar unos segundos.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contacto">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2>¿Dudas o quieres probarla?</h2>
+          <p style="color:var(--gris);font-size:18px">Escríbenos y te ayudamos a empezar.</p>
+          <div class="datos">
+            <!-- EDITA: tus datos reales -->
+            <div class="dato"><div class="ico">✉️</div><div><b>Correo</b><a href="mailto:[tu-correo@ejemplo.com]">[tu-correo@ejemplo.com]</a></div></div>
+            <div class="dato"><div class="ico">💬</div><div><b>WhatsApp</b><a href="https://wa.me/52XXXXXXXXXX">[+52 81 0000 0000]</a></div></div>
+            <div class="dato"><div class="ico">📍</div><div><b>Ubicación</b><span>[Guadalupe, Nuevo León, México]</span></div></div>
+            <div class="dato"><div class="ico">🕘</div><div><b>Horario</b><span>[Lunes a viernes, 9:00 a 18:00]</span></div></div>
+          </div>
+        </div>
+        <form id="form" novalidate>
+          <div><label for="nombre">Nombre</label><input id="nombre" required autocomplete="name"></div>
+          <div><label for="msg">Mensaje</label><textarea id="msg" required placeholder="Cuéntanos qué necesitas"></textarea></div>
+          <button class="btn btn-oscuro" type="submit">Enviar por WhatsApp</button>
+          <small id="aviso" style="color:var(--gris)">Se abrirá WhatsApp con tu mensaje listo para enviar.</small>
+        </form>
+      </div>
+      <!-- EDITA: cambia el lugar en "q=" por tu dirección (con + en lugar de espacios) -->
+      <div class="mapa">
+        <iframe title="Mapa de ubicación" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Guadalupe,+Nuevo+Le%C3%B3n,+M%C3%A9xico&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="anio"></span> LocalPON · Proyecto UTSC</span>
+    <span><a href="https://localpos-web.onrender.com/login.html">Portal</a> · <a href="#descargar">Descargar</a> · <a href="#contacto">Contacto</a></span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('anio').textContent = new Date().getFullYear();
+document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => document.getElementById('menu').classList.remove('abierto')));
+// Formulario: abre WhatsApp con el mensaje (EDITA el número, con lada de país y sin + ni espacios)
+const WHATSAPP = '52XXXXXXXXXX';
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const n = document.getElementById('nombre').value.trim(), m = document.getElementById('msg').value.trim();
+  if (!n || !m) { document.getElementById('aviso').textContent = 'Escribe tu nombre y tu mensaje.'; return; }
+  window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Hola, soy ' + n + '. ' + m), '_blank', 'noopener');
+});
+</script>
+</body>
+</html>
