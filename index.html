@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LocalPON · Ventas e inventario para tu negocio</title>
 <meta name="description" content="LocalPON: punto de venta e inventario para pequeños comercios. App para Android y portal web, gratis.">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
 <style>
@@ -32,7 +33,7 @@ h2{font-size:clamp(30px,4.5vw,46px);margin-bottom:14px}
 header{position:sticky;top:0;z-index:20;background:rgba(246,244,238,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;text-decoration:none}
-.logo i{width:34px;height:34px;border-radius:10px;background:var(--verde);display:grid;place-items:center;color:var(--ambar);font-style:normal;font-size:18px}
+.logo img{width:44px;height:44px;border-radius:50%;display:block}
 nav ul{display:flex;gap:26px;list-style:none;padding:0;align-items:center}
 nav a{text-decoration:none;font-weight:500;font-size:15px}
 nav a:hover{color:#9A5F0B}
@@ -74,13 +75,12 @@ section{padding:88px 0}
 /* fotos / bandas ilustradas */
 .fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .foto{border-radius:var(--radio);aspect-ratio:4/5;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px;color:#fff;background-size:cover;background-position:center}
-.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,25,22,.78))}
+.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,25,22,.85))}
 .foto span{position:relative;z-index:1;font-weight:700;font-size:19px;font-family:'Fraunces',serif}
 .foto small{display:block;font-family:'DM Sans';font-weight:400;font-size:14px;opacity:.85}
-.f1{background-image:linear-gradient(135deg,#2A9D8F,#14302B)}
-.f2{background-image:linear-gradient(135deg,#E8A33D,#9A5F0B)}
-.f3{background-image:linear-gradient(135deg,#1E4640,#0d1f1c)}
-.foto svg{position:absolute;top:18px;right:18px;width:96px;height:96px;opacity:.9}
+.f1{background-image:url('fotos/tienda.jpg')}
+.f2{background-image:url('fotos/cafeteria.jpg')}
+.f3{background-image:url('fotos/papeleria.jpg')}
 /* >>> Para usar fotos reales: sube tus fotos a la carpeta "fotos" y cambia, por ejemplo:
    .f1{background-image:url('fotos/tienda.jpg')}  <<< */
 
@@ -139,7 +139,7 @@ footer a{color:#BFD8D5}
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#inicio"><i>◆</i> LocalPON</a>
+    <a class="logo" href="#inicio"><img src="logo.png" alt="" width="44" height="44"> LocalPON</a>
     <nav aria-label="Principal">
       <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" onclick="const u=document.getElementById('menu');const a=u.classList.toggle('abierto');this.setAttribute('aria-expanded',a)">☰</button>
       <ul id="menu">
@@ -203,16 +203,13 @@ footer a{color:#BFD8D5}
   <section style="padding-top:0">
     <div class="wrap">
       <div class="fotos">
-        <div class="foto f1">
-          <svg viewBox="0 0 96 96" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 36h72l-6 44H18z"/><path d="M28 36l8-20h24l8 20"/></svg>
+        <div class="foto f1" role="img" aria-label="Tienda de abarrotes">
           <span>Tienditas y abarrotes<small>Controla lo que vendes cada día</small></span>
         </div>
-        <div class="foto f2">
-          <svg viewBox="0 0 96 96" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 36h48v26a16 16 0 0 1-16 16H36a16 16 0 0 1-16-16z"/><path d="M68 44h6a10 10 0 0 1 0 20h-6"/><path d="M34 16v10M46 12v14M58 16v10"/></svg>
+        <div class="foto f2" role="img" aria-label="Cafetería">
           <span>Cafeterías y comida<small>Cobra rápido en horas pico</small></span>
         </div>
-        <div class="foto f3">
-          <svg viewBox="0 0 96 96" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="22" y="12" width="52" height="72" rx="8"/><path d="M40 72h16"/><path d="M34 30h28M34 42h28M34 54h18"/></svg>
+        <div class="foto f3" role="img" aria-label="Papelería">
           <span>Papelerías y servicios<small>Inventario siempre a la mano</small></span>
         </div>
       </div>
@@ -238,7 +235,7 @@ footer a{color:#BFD8D5}
           <h3>App para Android</h3>
           <p>Instala el APK, entra con tu cuenta y activa el bloqueo con huella.</p>
           <!-- EDITA: cuando subas el APK a GitHub (Releases) este enlace lo descarga -->
-          <a class="btn btn-primario" href="https://github.com/roro1299/localpon-app/releases/latest" rel="noopener">Descargar APK</a>
+          <a class="btn btn-primario" href="https://github.com/roro1299/localpon-portada/releases/latest/download/LocalPON.apk" rel="noopener">Descargar APK</a>
           <small>Al instalar, Android puede pedir permiso para "orígenes desconocidos".</small>
         </div>
         <div class="caja">
@@ -260,10 +257,10 @@ footer a{color:#BFD8D5}
           <p style="color:var(--gris);font-size:18px">Escríbenos y te ayudamos a empezar.</p>
           <div class="datos">
             <!-- EDITA: tus datos reales -->
-            <div class="dato"><div class="ico">✉️</div><div><b>Correo</b><a href="mailto:[tu-correo@ejemplo.com]">[tu-correo@ejemplo.com]</a></div></div>
-            <div class="dato"><div class="ico">💬</div><div><b>WhatsApp</b><a href="https://wa.me/52XXXXXXXXXX">[+52 81 0000 0000]</a></div></div>
-            <div class="dato"><div class="ico">📍</div><div><b>Ubicación</b><span>[Guadalupe, Nuevo León, México]</span></div></div>
-            <div class="dato"><div class="ico">🕘</div><div><b>Horario</b><span>[Lunes a viernes, 9:00 a 18:00]</span></div></div>
+            <div class="dato"><div class="ico">✉️</div><div><b>Correo</b><a href="mailto:22788@virtual.utsc.edu.mx">22788@virtual.utsc.edu.mx</a></div></div>
+            <div class="dato"><div class="ico">💬</div><div><b>WhatsApp</b><a href="https://wa.me/528137074388">81 3707 4388</a></div></div>
+            <div class="dato"><div class="ico">📍</div><div><b>Ubicación</b><span>Guadalupe, Nuevo León, México</span></div></div>
+            <div class="dato"><div class="ico">🕘</div><div><b>Horario</b><span>Lunes a viernes, 09:00 a 18:00 horas</span></div></div>
           </div>
         </div>
         <form id="form" novalidate>
@@ -293,7 +290,7 @@ footer a{color:#BFD8D5}
 document.getElementById('anio').textContent = new Date().getFullYear();
 document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => document.getElementById('menu').classList.remove('abierto')));
 // Formulario: abre WhatsApp con el mensaje (EDITA el número, con lada de país y sin + ni espacios)
-const WHATSAPP = '52XXXXXXXXXX';
+const WHATSAPP = '528137074388';
 document.getElementById('form').addEventListener('submit', e => {
   e.preventDefault();
   const n = document.getElementById('nombre').value.trim(), m = document.getElementById('msg').value.trim();
